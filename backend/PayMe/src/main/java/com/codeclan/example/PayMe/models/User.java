@@ -1,15 +1,25 @@
 package com.codeclan.example.PayMe.models;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import com.fasterxml.jackson.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@javax.persistence.Entity
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Column
     private String name;
+
+    @Column
     private String email;
+
+    @JsonIgnoreProperties({"user"})
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Debtor>debtors;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     public User (String name, String email){

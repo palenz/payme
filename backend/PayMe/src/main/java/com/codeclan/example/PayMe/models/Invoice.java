@@ -1,11 +1,13 @@
 package com.codeclan.example.PayMe.models;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.persistence.Table;
 import java.time.LocalDate;
 
 
 @Entity
-@Table(name='invoices')
+@Table(name="invoices")
 public class Invoice {
 
     @Id
@@ -21,8 +23,10 @@ public class Invoice {
     @Column(name = "settlement_date")
     private LocalDate settlementDate;
 
+    @JsonIgnoreProperties({"invoices"})
     @ManyToOne
-    private Debtor debtor
+    @JoinColumn(name = "debtor_id", nullable = false)
+    private Debtor debtor;
 
 
     public Invoice(int amount, String reason) {
