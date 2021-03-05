@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 
 @Entity
-@Table(name='invoices')
+@Table(name="invoices")
 public class Invoice {
 
     @Id
@@ -22,7 +22,7 @@ public class Invoice {
     private LocalDate settlementDate;
 
     @ManyToOne
-    private Debtor debtor
+    private Debtor debtor;
 
 
     public Invoice(int amount, String reason) {

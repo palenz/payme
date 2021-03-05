@@ -21,7 +21,7 @@ public class Debtor {
     private String email;
 
 //One to many goes here
-    @JsonIgnoreProperties({debtors})
+    @JsonIgnoreProperties({"debtors"})
     @OneToMany(mappedBy = "debtor", fetch = FetchType.LAZY)
     private List<Invoice>invoices;
 
