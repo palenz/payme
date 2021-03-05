@@ -1,5 +1,4 @@
 package com.codeclan.example.PayMe.components;
-
 import com.codeclan.example.PayMe.models.Debtor;
 import com.codeclan.example.PayMe.models.Invoice;
 import com.codeclan.example.PayMe.models.User;
@@ -32,12 +31,24 @@ public class DataLoader implements ApplicationRunner {
         User user1 = new User("James Brown", "jamesbrown@fake.com");
         userRepository.save(user1);
 
+        User user2 = new User("Mike Boyd", "mikey@fake.com");
+        userRepository.save(user2);
+
         Debtor debtor1 = new Debtor("Mike Graham", "mike@fake.com", user1);
         debtorRepository.save(debtor1);
 
+        Debtor debtor2 = new Debtor("Jon Jones", "jonnyjon@fake.com", user1);
+        debtorRepository.save(debtor2);
 
         Invoice invoice1 = new Invoice(2000, "bought you dinner", debtor1);
         invoiceRepository.save(invoice1);
+
+        Invoice invoice2 = new Invoice(3400, "bought you clothes", debtor2);
+        invoiceRepository.save(invoice2);
+
+
+
+
 
     }
 

@@ -23,7 +23,7 @@ public class Invoice {
     @Column(name = "settlement_date")
     private LocalDate settlementDate;
 
-    @JsonIgnoreProperties({"invoices"})
+    @JsonIgnoreProperties({"invoices", "debtor", "debtors"})
     @ManyToOne
     @JoinColumn(name = "debtor_id", nullable = false)
     private Debtor debtor;

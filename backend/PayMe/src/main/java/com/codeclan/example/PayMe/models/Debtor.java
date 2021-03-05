@@ -4,8 +4,6 @@ import java.util.List;
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.*;
 
-
-
 @Entity
 @Table(name = "debtors")
 public class Debtor {
@@ -26,7 +24,7 @@ public class Debtor {
     private User user;
 
 //One to many goes here
-    @JsonIgnoreProperties({"debtors"})
+    @JsonIgnoreProperties({"debtors", "debtor"})
     @OneToMany(mappedBy = "debtor", fetch = FetchType.EAGER) // LAZY OR EAGER?!
     private List<Invoice>invoices;
 
@@ -70,7 +68,7 @@ public class Debtor {
     }
 
 
-    public void addInvoices(Invoice invoice) {
+    public void addInvoice(Invoice invoice) {
         this.invoices.add(invoice);
     }
 
