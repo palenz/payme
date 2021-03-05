@@ -1,12 +1,16 @@
 package com.codeclan.example.PayMe.models;
-
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.ArrayList;
+import java.util.List;
 
+@javax.persistence.Entity
 public class User {
 
     private String name;
     private String email;
     private List<Debtor>debtors;
+    private Long id;
 
     public User (String name, String email){
         this.name = name;
@@ -39,6 +43,14 @@ public class User {
 
     public void addDebtors(Debtor debtor) {
         this.debtors.add(debtor);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }
