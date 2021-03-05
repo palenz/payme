@@ -2,11 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="3f37f175-e63c-4d57-93ba-8ca9470d0bd2" name="Default Changelist" comment="" />
 =======
     <list default="true" id="3f37f175-e63c-4d57-93ba-8ca9470d0bd2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/PayMe/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/PayMe/src/main/resources/application.properties" afterDir="false" />
     </list>
+>>>>>>> main
+=======
+    <list default="true" id="3f37f175-e63c-4d57-93ba-8ca9470d0bd2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/PayMe/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/PayMe/src/main/resources/application.properties" afterDir="false" />
+    </list>
+=======
+    <list default="true" id="3f37f175-e63c-4d57-93ba-8ca9470d0bd2" name="Default Changelist" comment="" />
+>>>>>>> 85ad789bb00ffc61339d4890865974304a3ee66b
 >>>>>>> main
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
