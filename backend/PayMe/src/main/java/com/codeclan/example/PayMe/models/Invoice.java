@@ -29,13 +29,22 @@ public class Invoice {
     private Debtor debtor;
 
 
-    public Invoice(int amount, String reason) {
+    public Invoice(int amount, String reason, Debtor debtor) {
         this.amount = amount;
         this.reason = reason;
+        this.debtor = debtor;
         this.settlementDate = null;
     }
 
     public Invoice() {
+    }
+
+    public Debtor getDebtor() {
+        return debtor;
+    }
+
+    public void setDebtor(Debtor debtor) {
+        this.debtor = debtor;
     }
 
     public int getAmount() {
