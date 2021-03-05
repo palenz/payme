@@ -20,19 +20,33 @@ public class Debtor {
     @Column(name = "email")
     private String email;
 
+    @JsonIgnoreProperties({"debtors"})
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
 //One to many goes here
     @JsonIgnoreProperties({"debtors"})
-    @OneToMany(mappedBy = "debtor", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "debtor", fetch = FetchType.EAGER) // LAZY OR EAGER?!
     private List<Invoice>invoices;
 
 
-    public Debtor(String name, String email) {
+    public Debtor(String name, String email, User user) {
         this.name = name;
         this.email = email;
+        this.user = user;
         this.invoices = new ArrayList<Invoice>();
     }
 
     public Debtor() {
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getName() {

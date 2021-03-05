@@ -1,4 +1,6 @@
 package com.codeclan.example.PayMe.models;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.persistence.Table;
 import java.time.LocalDate;
@@ -21,17 +23,28 @@ public class Invoice {
     @Column(name = "settlement_date")
     private LocalDate settlementDate;
 
+    @JsonIgnoreProperties({"invoices"})
     @ManyToOne
+    @JoinColumn(name = "debtor_id", nullable = false)
     private Debtor debtor;
 
 
-    public Invoice(int amount, String reason) {
+    public Invoice(int amount, String reason, Debtor debtor) {
         this.amount = amount;
         this.reason = reason;
+        this.debtor = debtor;
         this.settlementDate = null;
     }
 
     public Invoice() {
+    }
+
+    public Debtor getDebtor() {
+        return debtor;
+    }
+
+    public void setDebtor(Debtor debtor) {
+        this.debtor = debtor;
     }
 
     public int getAmount() {
