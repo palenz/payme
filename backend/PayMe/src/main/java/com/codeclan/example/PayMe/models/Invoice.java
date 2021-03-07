@@ -29,6 +29,8 @@ public class Invoice {
     private Debtor debtor;
 
 
+
+
     public Invoice(int amount, String reason, Debtor debtor) {
         this.amount = amount;
         this.reason = reason;

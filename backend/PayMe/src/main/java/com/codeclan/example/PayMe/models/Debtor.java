@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.*;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "debtors")
@@ -26,6 +27,7 @@ public class Debtor {
 //One to many goes here
     @JsonIgnoreProperties({"debtors", "debtor"})
     @OneToMany(mappedBy = "debtor", fetch = FetchType.EAGER) // LAZY OR EAGER?!
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<Invoice>invoices;
 
 

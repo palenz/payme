@@ -1,6 +1,8 @@
 package com.codeclan.example.PayMe.models;
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.*;
+import org.hibernate.annotations.Cascade;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class User {
 
     @JsonIgnoreProperties({"user"})
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<Debtor>debtors;
 
 

@@ -36,4 +36,15 @@ public class InvoiceController {
         return new ResponseEntity<>(invoice, HttpStatus.CREATED);
     }
 
+    @DeleteMapping(value = "/invoices/{id}")
+    public ResponseEntity deleteInvoice(@PathVariable Long id) {
+        Optional<Invoice> invoiceToDelete = invoiceRepository.findById(id);
+        if (!invoiceToDelete.isPresent()) {
+            return new ResponseEntity(id, HttpStatus.NOT_FOUND);
+        } else {
+            invoiceRepository.delete(invoiceToDelete.get());
+            return new ResponseEntity(id, HttpStatus.OK);
+        }
+    }
+
 }
