@@ -1,4 +1,5 @@
 import React, {useState, useEffect, Fragment} from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Request from '../helpers/request';
 import InvoiceForm from '../components/InvoiceForm'
 
@@ -8,12 +9,17 @@ const MainContainer = () => {
     const [debtors, setDebtors] = useState([]);
     const [user, setUser] = useState([]);
 
+    useEffect(() => {
+        getAllData();
+    }, [invoices]);
+
     const getAllData = () => {
         console.log("getting data..");
         const request = new Request();
-        const invoicePromise = request.get('/api/invoices')
-        const debtorsPromise = request.get('/')
         const userPromise = request.get('/')
+        const invoicePromise = request.get('/users/${user_id}/invoices')
+        const debtorsPromise = request.get('/')
+        
 
 
         Promise.all([invoicePromise, debtorsPromise, userPromise])
