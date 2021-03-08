@@ -11,14 +11,14 @@ const MainContainer = () => {
 
     useEffect(() => {
         getAllData();
-    }, [invoices]);
+    }, []);
 
     const getAllData = () => {
         console.log("getting data..");
         const request = new Request();
-        const userPromise = request.get('/')
-        const invoicePromise = request.get('/users/${user_id}/invoices')
-        const debtorsPromise = request.get('/')
+        const userPromise = request.get('http://localhost:8080/users/98c3b7d1-7557-4b49-a4f3-51f6edb1ef1f')
+        const invoicePromise = request.get('http://localhost:8080/users/98c3b7d1-7557-4b49-a4f3-51f6edb1ef1f/invoices')
+        const debtorsPromise = request.get('http://localhost:8080/users/98c3b7d1-7557-4b49-a4f3-51f6edb1ef1f/debtors')
         
 
 
