@@ -6,8 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
-public interface DebtorRepository extends JpaRepository<Debtor, Long> {
-    List<Debtor> findByUserId(Long id);
+public interface DebtorRepository extends JpaRepository<Debtor, UUID> {
+    List<Debtor> findByUserId(UUID id);
 }

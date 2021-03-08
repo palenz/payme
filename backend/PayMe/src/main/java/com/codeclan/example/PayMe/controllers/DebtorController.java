@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class DebtorController {
@@ -19,7 +20,7 @@ public class DebtorController {
     };
 
     @GetMapping(value = "/debtors/{id}")
-    public ResponseEntity getDebtor(@PathVariable Long id){
+    public ResponseEntity getDebtor(@PathVariable UUID id){
         return new ResponseEntity<>(debtorRepository.findById(id), HttpStatus.OK);
     }
 

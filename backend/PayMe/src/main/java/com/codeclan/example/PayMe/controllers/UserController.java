@@ -56,7 +56,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/users/{id}/debtors")
-    public ResponseEntity<List<Debtor>> findDebtorsByUserId(@PathVariable Long id){
+    public ResponseEntity<List<Debtor>> findDebtorsByUserId(@PathVariable UUID id){
         return new ResponseEntity<>(debtorRepository.findByUserId(id), HttpStatus.OK);
     }
 
