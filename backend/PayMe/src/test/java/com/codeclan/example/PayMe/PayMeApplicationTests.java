@@ -1,7 +1,11 @@
 package com.codeclan.example.PayMe;
 
+import com.codeclan.example.PayMe.models.Debtor;
 import com.codeclan.example.PayMe.models.Invoice;
+import com.codeclan.example.PayMe.models.User;
+import com.codeclan.example.PayMe.repositories.DebtorRepository;
 import com.codeclan.example.PayMe.repositories.InvoiceRepository;
+import com.codeclan.example.PayMe.repositories.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +23,20 @@ class PayMeApplicationTests {
 	@Autowired
 	InvoiceRepository invoiceRepository;
 
+	@Autowired
+	DebtorRepository debtorRepository;
+
+	@Autowired
+	UserRepository userRepository;
+
 	@Test
 	void contextLoads() {
 	}
 
-//	@Test
-//	public void canFindInvoicesByUserId(){
-//		List<Invoice> found = invoiceRepository.findInvoicesByUserId(1L);
-//		assertEquals(1, found.size());
-//	}
+	@Test
+	public void canFindDebtorsForUserId(){
+		List<Debtor> debtors = debtorRepository.findByUserId(1L);
+		assertEquals(2, debtors.size());
+	}
 
 }

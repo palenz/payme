@@ -1,6 +1,8 @@
 package com.codeclan.example.PayMe.controllers;
+import com.codeclan.example.PayMe.models.Debtor;
 import com.codeclan.example.PayMe.models.Invoice;
 import com.codeclan.example.PayMe.models.User;
+import com.codeclan.example.PayMe.repositories.DebtorRepository;
 import com.codeclan.example.PayMe.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,9 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    DebtorRepository debtorRepository;
 
     @GetMapping(value = "/users")
     public ResponseEntity<List<User>> getAllUsers(){
@@ -40,9 +45,14 @@ public class UserController {
             return new ResponseEntity(id, HttpStatus.NOT_FOUND);
         } else {
             userRepository.delete(userToDelete.get());
-//            Create get invoices and debtors by user id. This will be done in the invoice and debtors repo
+//          Create get invoices and debtors by user id. This will be done in the invoice and debtors repo
             return new ResponseEntity(id, HttpStatus.OK);
         }
+    }
+
+    @GetMapping(value = "/users/{id}/debtors")
+    public ResponseEntity<List<Debtor>> findDebtorsByUserId(@PathVariable Long id){
+        return new ResponseEntity<>(debtorRepository.findByUserId(id), HttpStatus.OK);
     }
 
 

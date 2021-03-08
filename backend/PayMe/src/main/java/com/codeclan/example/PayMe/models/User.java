@@ -21,7 +21,7 @@ public class User {
     private String email;
 
     @JsonIgnoreProperties({"user"})
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<Debtor>debtors;
 

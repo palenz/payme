@@ -46,10 +46,6 @@ public class DataLoader implements ApplicationRunner {
         Invoice invoice2 = new Invoice(3400, "bought you clothes", debtor2);
         invoiceRepository.save(invoice2);
 
-
-
-
-
     }
 
 
