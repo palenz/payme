@@ -2,17 +2,21 @@ package com.codeclan.example.PayMe.models;
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.*;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @Column
     private String name;
@@ -20,7 +24,8 @@ public class User {
     @Column
     private String email;
 
-    @JsonIgnoreProperties({"user"})
+//    Just keep user below to show all nested tables
+    @JsonIgnoreProperties({"debtors", "debtor", "user"})
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<Debtor>debtors;
@@ -60,11 +65,11 @@ public class User {
         this.debtors.add(debtor);
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

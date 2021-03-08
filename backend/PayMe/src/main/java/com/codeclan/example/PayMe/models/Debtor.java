@@ -19,13 +19,13 @@ public class Debtor {
     @Column(name = "email")
     private String email;
 
-    @JsonIgnoreProperties({"debtors"})
+    @JsonIgnoreProperties({"debtors", "debtor", "user", "invoices", "id"})
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
 //One to many goes here
-    @JsonIgnoreProperties({"debtors", "debtor"})
+    @JsonIgnoreProperties({"debtors", "debtor", "user", "invoices", "id"})
     @OneToMany(mappedBy = "debtor", fetch = FetchType.LAZY) // LAZY OR EAGER?!
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private List<Invoice>invoices;

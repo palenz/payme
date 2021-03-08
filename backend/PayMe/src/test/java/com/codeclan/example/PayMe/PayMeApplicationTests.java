@@ -33,10 +33,16 @@ class PayMeApplicationTests {
 	void contextLoads() {
 	}
 
-	@Test
-	public void canFindDebtorsForUserId(){
-		List<Debtor> debtors = debtorRepository.findByUserId(1L);
-		assertEquals(2, debtors.size());
+//	@Test
+//	public void canFindDebtorsForUserId(){
+//		List<Debtor> debtors = debtorRepository.findByUserId(1L);
+//		assertEquals(2, debtors.size());
+//	}
+//
+//	@Test
+//	public void canFindInvoicesForUserId(){
+//		List<Invoice> invoices = invoiceRepository.findByDebtorUserId(1L);
+//		assertEquals(2, invoices.size());
 	}
 
-}
+

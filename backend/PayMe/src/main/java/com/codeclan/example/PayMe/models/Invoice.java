@@ -1,9 +1,12 @@
 package com.codeclan.example.PayMe.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.id.UUIDGenerator;
 
 import javax.persistence.*;
 import javax.persistence.Table;
 import java.time.LocalDate;
+import java.util.UUID;
 
 
 @Entity
@@ -11,8 +14,10 @@ import java.time.LocalDate;
 public class Invoice {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @Column
     private int amount;
@@ -23,13 +28,10 @@ public class Invoice {
     @Column(name = "settlement_date")
     private LocalDate settlementDate;
 
-    @JsonIgnoreProperties({"invoices", "debtor", "debtors"})
+    @JsonIgnoreProperties({"debtors", "debtor", "invoices"})
     @ManyToOne
     @JoinColumn(name = "debtor_id", nullable = false)
     private Debtor debtor;
-
-
-
 
     public Invoice(int amount, String reason, Debtor debtor) {
         this.amount = amount;
@@ -73,11 +75,11 @@ public class Invoice {
         this.settlementDate = LocalDate.now();
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 }

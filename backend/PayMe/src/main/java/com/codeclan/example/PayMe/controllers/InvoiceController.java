@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.xml.ws.Response;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 public class InvoiceController {
@@ -20,13 +21,9 @@ public class InvoiceController {
         return new ResponseEntity<>(invoiceRepository.findAll(), HttpStatus.OK);
     };
 
-//    @GetMapping(value = "/invoices/{id}")
-//    public Optional<Invoice> getInvoice(@PathVariable Long id) {
-//        return invoiceRepository.findById(id);
-//    };
 
     @GetMapping(value = "/invoices/{id}")
-    public ResponseEntity getInvoice(@PathVariable Long id){
+    public ResponseEntity getInvoice(@PathVariable UUID id){
         return new ResponseEntity<>(invoiceRepository.findById(id), HttpStatus.OK);
     }
 
@@ -37,7 +34,7 @@ public class InvoiceController {
     }
 
     @DeleteMapping(value = "/invoices/{id}")
-    public ResponseEntity deleteInvoice(@PathVariable Long id) {
+    public ResponseEntity deleteInvoice(@PathVariable UUID id) {
         Optional<Invoice> invoiceToDelete = invoiceRepository.findById(id);
         if (!invoiceToDelete.isPresent()) {
             return new ResponseEntity(id, HttpStatus.NOT_FOUND);
