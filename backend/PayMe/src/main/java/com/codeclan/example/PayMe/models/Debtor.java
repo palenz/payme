@@ -27,7 +27,7 @@ public class Debtor {
 //One to many goes here
     @JsonIgnoreProperties({"debtors", "debtor", "user", "invoices", "id"})
     @OneToMany(mappedBy = "debtor", fetch = FetchType.LAZY) // LAZY OR EAGER?!
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Invoice>invoices;
 
 

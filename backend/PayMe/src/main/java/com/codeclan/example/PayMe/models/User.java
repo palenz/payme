@@ -27,7 +27,7 @@ public class User {
 //    Just keep user below to show all nested tables
     @JsonIgnoreProperties({"debtors", "debtor", "user"})
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Debtor>debtors;
 
 
