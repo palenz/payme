@@ -19,7 +19,7 @@ public class Debtor {
     @Column(name = "email")
     private String email;
 
-    @JsonIgnoreProperties({"debtors", "debtor", "user", "invoices", "id"})
+    @JsonIgnoreProperties({"debtors"})
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;

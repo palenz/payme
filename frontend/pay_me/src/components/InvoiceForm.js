@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 
 
 class InvoiceForm extends Component {
-
 
       constructor(props) {
       super(props);
@@ -10,7 +9,12 @@ class InvoiceForm extends Component {
             debtor: {
               name: "",
               email: "",
-              user: props.user
+              user: {   
+          
+              },
+              invoices: [
+ 
+              ]
             }
           }
         this.handleChange = this.handleChange.bind(this);
@@ -18,10 +22,35 @@ class InvoiceForm extends Component {
         // this.handleUser = this.handleUser.bind(this);
         }
 
+        useEffect () {
+          updateUser();
+      }, [this.props.soleUser];
 
-    componentDidMount() {
-      if(this.props.debtor) {
-        this.setState({debtor: {... this.props.debtor}})
+
+      updateUser(){
+        const newDebtor = {debtor: {... this.props.debtor}, 
+        user: {   
+        id: this.props.soleUser.id,
+        name: this.props.soleUser.name,
+        email: this.props.soleUser.email
+  
+      }}
+        this.setState(newDebtor)
+      }
+
+
+    componentDidUpdate(prevState) {
+      console.log("mounted");
+      if(this.props.loaded) {
+        // this.setState({debtor: {... this.props.debtor}})
+        const newDebtor = {debtor: {... this.props.debtor}, 
+        user: {   
+        id: this.props.soleUser.id,
+        name: this.props.soleUser.name,
+        email: this.props.soleUser.email
+  
+      }}
+        this.setState(newDebtor)
       }
     }
 
@@ -52,6 +81,7 @@ class InvoiceForm extends Component {
         <input type="text" placeholder="debtor email" name="email" onChange={this.handleChange} value={this.state.debtor.email} />
         <button type="submit">save</button>
         </form>
+        <h1>{this.props.soleUser.name}</h1>
       </>
       )
 
