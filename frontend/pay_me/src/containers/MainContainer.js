@@ -17,9 +17,9 @@ const MainContainer = () => {
     const getAllData = () => {
         console.log("getting data..");
         const request = new Request();
-        const userPromise = request.get('http://localhost:8080/users/8417fc7b-f6af-4b26-8b12-1821deaa394d')
-        const invoicePromise = request.get('http://localhost:8080/users/8417fc7b-f6af-4b26-8b12-1821deaa394d/invoices')
-        const debtorsPromise = request.get('http://localhost:8080/users/8417fc7b-f6af-4b26-8b12-1821deaa394d/debtors')
+        const userPromise = request.get('http://localhost:8080/users/a7474d16-4164-4413-8067-436ecc969290')
+        const invoicePromise = request.get('http://localhost:8080/users/a7474d16-4164-4413-8067-436ecc969290/invoices')
+        const debtorsPromise = request.get('http://localhost:8080/users/a7474d16-4164-4413-8067-436ecc969290/debtors')
         
 
 
@@ -29,8 +29,6 @@ const MainContainer = () => {
                 setDebtors(data[1]);
                 setUser(data[2]);
             })
-
-
     }
 
     if (!{invoices}) {
@@ -42,9 +40,15 @@ const MainContainer = () => {
         setInvoices(updatedInvoices);
     }
 
+
+    const handlePost = (debtor) => {
+        const request = new Request();
+        request.post("http://localhost:8080/debtors", debtor)
+    }
+
     return(
         <>
-        <InvoiceForm onInvoiceSubmit={(invoice) => addInvoice(invoice)}/>
+        <InvoiceForm  onCreate = { handlePost } />
         <InvoiceList invoices = {invoices}/>
         </>
     )

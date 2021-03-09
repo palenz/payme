@@ -1,85 +1,63 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 
 
-const InvoiceForm = ({onInvoiceSubmit}) => {
+class InvoiceForm extends Component {
 
-    const [debtorName, setDebtorName] = useState("");
-    const [debtorEmail, setDebtorEmail] = useState("");
 
-    const [invoiceAmount, setInvoiceAmount] = useState(0);
-    const [invoiceReason, setInvoiceReason] = useState("");
+      constructor(props) {
+      super(props);
+        this.state = {
+            debtor: {
+              name: "",
+              email: "",
+              user: props.user
+            }
+          }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.handleUser = this.handleUser.bind(this);
+        }
 
-    const handleDebtorNameChange = (e) => {
-        setDebtorName(e.target.value);
+
+    componentDidMount() {
+      if(this.props.debtor) {
+        this.setState({debtor: {... this.props.debtor}})
+      }
     }
 
-    const handleDebtorEmailChange = (e) => {
-        setDebtorEmail(e.target.value);
+    // handleUser(e){
+    //   const index = parseInt(e.target.value)
+    //   const selectedUser = this.props.user[index]
+    //   let debtor = this
+    // }
+
+    handleChange(e) {
+      let debtorName = e.target.name;
+      let newDebtor = this.state.debtor
+      newDebtor[debtorName] = e.target.value;
+      this.setState({debtor: newDebtor})
     }
 
-    const handleInvoiceReasonChange = (e) => {
-        setInvoiceReason(e.target.value);
+    handleSubmit(e) {
+      e.preventDefault();
+       this.props.onCreate(this.state.debtor)
     }
 
-
-    const handleInvoiceAmountChange = (e) => {
-        setInvoiceAmount(e.target.value);
-    }
-
-
-    const handleInvoiceSubmit = (e) => {
-        e.preventDefault();
-        const debtorNameToSubmit = debtorName.trim();
-        const debtorEmailToSubmit = debtorEmail.trim();
-        const invoiceReasonToSunbmit = invoiceReason.trim();
-        const invoiceAmountToSubmit = invoiceAmount;
-
-        onInvoiceSubmit({
-            debtorName: debtorNameToSubmit,
-            debtorEmail: debtorEmailToSubmit,
-            invoiceReason: invoiceReasonToSunbmit,
-            inviceAmount: invoiceAmountToSubmit
-        });
-
-        setInvoiceAmount(0);
-        setInvoiceReason("");
-        setDebtorName("");
-        setDebtorEmail("");
-    }
-
+    render(){
 
     return (
-        <form onSubmit={handleInvoiceSubmit}>
-          <input 
-            type="text"
-            placeholder="Dedtors name"
-            value={debtorName}
-            onChange={handleDebtorNameChange}
-          />
-          <input 
-            type="text"
-            placeholder="Dedtors email"
-            value={debtorEmail}
-            onChange={handleDebtorEmailChange}
-          />
-          <input 
-            type="text"
-            placeholder="Reason"
-            value={invoiceReason}
-            onChange={handleInvoiceReasonChange}
-          />
-          <input 
-            type="number"
-            placeholder="Amount"
-            value={invoiceAmount}
-            onChange={handleInvoiceAmountChange}
-          />
-          <input 
-            type="submit"
-            value="Post"
-          />
+      <>
+        <form onSubmit={this.handleSubmit}>
+        <input type="text" placeholder="debtor name" name="name" onChange={this.handleChange} value={this.state.debtor.name} />
+        <input type="text" placeholder="debtor email" name="email" onChange={this.handleChange} value={this.state.debtor.email} />
+        <button type="submit">save</button>
         </form>
+      </>
       )
-}
+
+    }
+  
+  }
+
 
 export default InvoiceForm;

@@ -25,7 +25,7 @@ public class DebtorController {
     }
 
     @PostMapping(value = "/debtors")
-    public ResponseEntity<Debtor> postDebtor(@RequestBody Debtor debtor){
+    public ResponseEntity<Debtor> postDebtor(@RequestBody Debtor debtor) {
         debtorRepository.save(debtor);
         return new ResponseEntity<>(debtor, HttpStatus.CREATED);
     }
