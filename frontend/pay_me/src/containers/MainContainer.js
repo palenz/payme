@@ -1,8 +1,9 @@
 import React, {useState, useEffect, Fragment} from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Request from '../helpers/request';
-import InvoiceForm from '../components/InvoiceForm';
+import DebtorForm from '../components/DebtorForm';
 import InvoiceList from '../components/InvoiceList';
+import InvoiceForm from '../components/InvoiceForm';
 
 const MainContainer = () => {
 
@@ -50,9 +51,15 @@ const MainContainer = () => {
         request.post("http://localhost:8080/debtors", debtor)
     }
 
+    const handlePostInvoice = (invoice) => {
+        const request = new Request();
+        request.post("http://localhost:8080/invoices", invoice)
+    }
+
     return(
         <>
-        <InvoiceForm user = {user} onCreate = { handlePost } />
+        <DebtorForm user = {user} onCreate = { handlePost } />
+        <InvoiceForm debtors = {debtors} onCreate = {handlePostInvoice} />
         <InvoiceList invoices = {invoices}/>
         
         </>
