@@ -40,16 +40,12 @@ const MainContainer = () => {
         return null
       }
 
-    const addInvoice = (submittedInvoice) => {
-        const updatedInvoices = [...invoices, submittedInvoice];
-        setInvoices(updatedInvoices);
-    }
 
     const handleDelete = (id) =>  {
         const request = new Request();
           const url = "http://localhost:8080/invoices/" + id
           request.delete(url)
-        }
+    }
 
     const handlePost = (debtor) => {
         const request = new Request();
