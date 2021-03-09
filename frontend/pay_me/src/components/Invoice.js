@@ -1,6 +1,12 @@
 import React, {Fragment} from 'react';
 
-const Invoice = ({invoice}) => {
+const Invoice = ({invoice, onDelete}) => {
+
+
+  const handleDelete = () => {
+    onDelete(invoice.id)
+  }
+
 
   if (!invoice){
     return "Loading..."
@@ -14,6 +20,7 @@ const Invoice = ({invoice}) => {
     </h1>
     <p>Reason: {invoice.reason}</p>
     <p>Amount: {invoice.amount}</p>
+    <button onClick={handleDelete}>Delete</button>
     </Fragment>
   )
 }

@@ -45,6 +45,11 @@ const MainContainer = () => {
         setInvoices(updatedInvoices);
     }
 
+    const handleDelete = (id) =>  {
+        const request = new Request();
+          const url = "http://localhost:8080/invoices/" + id
+          request.delete(url)
+        }
 
     const handlePost = (debtor) => {
         const request = new Request();
@@ -60,7 +65,7 @@ const MainContainer = () => {
         <>
         <DebtorForm user = {user} onCreate = { handlePost } />
         <InvoiceForm debtors = {debtors} onCreate = {handlePostInvoice} />
-        <InvoiceList invoices = {invoices}/>
+        <InvoiceList invoices = {invoices} onDelete = { handleDelete }/>
         
         </>
     )

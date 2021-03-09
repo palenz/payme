@@ -12,7 +12,7 @@ const InvoiceList = (props) => {
 	  return (
 	    <li key={index} >
 	    <div >
-	    <Invoice invoice={invoice}/>
+	    <Invoice invoice={invoice} onDelete = { props.onDelete }/>
 	    </div>
 	    </li>
 	  )

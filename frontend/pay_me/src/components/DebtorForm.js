@@ -33,7 +33,6 @@ const DebtorForm = (props) => {
         <input type="text" placeholder="debtor email" name="email" onChange={handleEmailChange}/>
         <button type="submit">save</button>
         </form>
-        <h1>{props.user.name}</h1>
       </>
       )
   
