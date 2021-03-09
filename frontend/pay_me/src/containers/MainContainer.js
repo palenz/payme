@@ -18,9 +18,9 @@ const MainContainer = () => {
     const getAllData = () => {
         console.log("getting data..");
         const request = new Request();
-        const userPromise = request.get('http://localhost:8080/users/f1387b9d-0e12-44ad-b325-c7be9e5fdd54')
-        const invoicePromise = request.get('http://localhost:8080/users/f1387b9d-0e12-44ad-b325-c7be9e5fdd54/invoices')
-        const debtorsPromise = request.get('http://localhost:8080/users/f1387b9d-0e12-44ad-b325-c7be9e5fdd54/debtors')
+        const userPromise = request.get('http://localhost:8080/users/83a85226-1f57-46ca-aa64-e053eaa2ac0e')
+        const invoicePromise = request.get('http://localhost:8080/users/83a85226-1f57-46ca-aa64-e053eaa2ac0e/invoices')
+        const debtorsPromise = request.get('http://localhost:8080/users/83a85226-1f57-46ca-aa64-e053eaa2ac0e/debtors')
         
 
 
@@ -52,7 +52,7 @@ const MainContainer = () => {
 
     return(
         <>
-        <InvoiceForm soleUser = {user} onCreate = { handlePost } />
+        <InvoiceForm user = {user} onCreate = { handlePost } />
         <InvoiceList invoices = {invoices}/>
         
         </>

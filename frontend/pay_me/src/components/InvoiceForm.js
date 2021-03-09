@@ -1,93 +1,42 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 
-class InvoiceForm extends Component {
+const InvoiceForm = (props) => {
 
-      constructor(props) {
-      super(props);
-        this.state = {
-            debtor: {
-              name: "",
-              email: "",
-              user: {   
-          
-              },
-              invoices: [
- 
-              ]
-            }
-          }
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        // this.handleUser = this.handleUser.bind(this);
-        }
+    const [debtor, setDebtor] = useState({name: "", email: "", user: undefined});
 
-        useEffect () {
-          updateUser();
-      }, [this.props.soleUser];
+    useEffect(() => {
+      setDebtor({...debtor, user: props.user})
+    }, [props.user])
 
-
-      updateUser(){
-        const newDebtor = {debtor: {... this.props.debtor}, 
-        user: {   
-        id: this.props.soleUser.id,
-        name: this.props.soleUser.name,
-        email: this.props.soleUser.email
-  
-      }}
-        this.setState(newDebtor)
-      }
-
-
-    componentDidUpdate(prevState) {
-      console.log("mounted");
-      if(this.props.loaded) {
-        // this.setState({debtor: {... this.props.debtor}})
-        const newDebtor = {debtor: {... this.props.debtor}, 
-        user: {   
-        id: this.props.soleUser.id,
-        name: this.props.soleUser.name,
-        email: this.props.soleUser.email
-  
-      }}
-        this.setState(newDebtor)
-      }
+    const handleNameChange = (e) => {
+      let newDebtor = debtor;
+      newDebtor.name = e.target.value
+      setDebtor(newDebtor)
     }
 
-    // handleUser(e){
-    //   const index = parseInt(e.target.value)
-    //   const selectedUser = this.props.user[index]
-    //   let debtor = this
-    // }
-
-    handleChange(e) {
-      let debtorName = e.target.name;
-      let newDebtor = this.state.debtor
-      newDebtor[debtorName] = e.target.value;
-      this.setState({debtor: newDebtor})
+    const handleEmailChange = (e) => {
+      let newDebtor = debtor;
+      newDebtor.email = e.target.value
+      setDebtor(newDebtor)
     }
 
-    handleSubmit(e) {
-      e.preventDefault();
-       this.props.onCreate(this.state.debtor)
+    const handleSubmit = (e) => {
+      props.onCreate(debtor);
+      setDebtor({name: "", email: "", user: undefined})
     }
-
-    render(){
 
     return (
       <>
-        <form onSubmit={this.handleSubmit}>
-        <input type="text" placeholder="debtor name" name="name" onChange={this.handleChange} value={this.state.debtor.name} />
-        <input type="text" placeholder="debtor email" name="email" onChange={this.handleChange} value={this.state.debtor.email} />
+        <form onSubmit={handleSubmit}>
+        <input type="text" placeholder="debtor name" name="name" onChange={handleNameChange}/>
+        <input type="text" placeholder="debtor email" name="email" onChange={handleEmailChange}/>
         <button type="submit">save</button>
         </form>
-        <h1>{this.props.soleUser.name}</h1>
+        <h1>{props.user.name}</h1>
       </>
       )
-
-    }
   
-  }
-
+}
 
 export default InvoiceForm;
