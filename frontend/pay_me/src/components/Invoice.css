@@ -1,0 +1,27 @@
+.invoicewrap {
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+h4 {
+  text-align: left;
+  font-size: large;
+  font-weight: 500;
+  color: #272727;
+}
+
+h6 {
+    text-align: left;
+    font-size: large;
+    font-weight: 400;
+    color: #272727;
+    padding-bottom: 0px;
+  }
+
+p {
+    text-align: left;
+    font-size: medium;
+    font-weight: 400;
+    color: #272727; 
+}
