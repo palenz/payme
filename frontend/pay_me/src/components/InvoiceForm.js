@@ -62,7 +62,7 @@ const InvoiceForm = (props) => {
         </select>
         <input type="number" placeholder="amount" name="amount" onChange={handleAmountChange}/>
         <input type="text" placeholder="reason" name="reason" onChange={handleReasonChange}/>
-        <button onClick = {handleSms} type="submit">save</button >
+        <button onClick = {handleSms} type="submit">send</button >
         </form>
         </div>
       </>
