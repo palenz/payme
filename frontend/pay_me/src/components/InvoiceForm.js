@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 const InvoiceForm = (props) => {
 
     const [invoice, setInvoice] = useState({amount: 0, reason: "", settlementDate: null, debtor: undefined});
-
+    const [message, setMessage] = useState({numbers:[], message: ""})
 
     useEffect(() => {
       setInvoice({...invoice, user: props.d})
@@ -30,13 +30,22 @@ const InvoiceForm = (props) => {
         setInvoice(newInvoice)
       }
 
+    const handleSms =(e) => {
+        let newSms = message;
+        newSms.numbers.push(invoice.debtor.email); 
+        newSms.message = invoice.reason;
+        setMessage(newSms);
+        props.onCreate(message);
+    }
+
 
     const handleSubmit = (e) => {
-      
       props.onCreate(invoice);
       console.log(invoice);
       setInvoice({name: "", email: "", settlementDate: null, debtor: undefined})
     }
+
+   
 
     const debtorOptions = props.debtors.map((debtor, index) => {
         return <option key={debtor.id} value={index}>{debtor.name}</option>
@@ -44,14 +53,14 @@ const InvoiceForm = (props) => {
 
     return (
       <>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
         <select name="debtor" onChange={handleDebtor} defaultValue={'select-ship'}>
         <option disabled value="select-debtor">Select a Debtor</option>
         {debtorOptions}
         </select>
         <input type="number" placeholder="amount" name="amount" onChange={handleAmountChange}/>
         <input type="text" placeholder="reason" name="reason" onChange={handleReasonChange}/>
-        <button type="submit">save</button>
+        <button onClick = {handleSms} type="submit">save</button >
         </form>
       </>
       )
