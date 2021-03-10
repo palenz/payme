@@ -19,9 +19,9 @@ const MainContainer = () => {
     const getAllData = () => {
         console.log("getting data..");
         const request = new Request();
-        const userPromise = request.get('http://localhost:8080/users/cba36036-9f44-41e9-b0a6-f029f2e8422f')
-        const invoicePromise = request.get('http://localhost:8080/users/cba36036-9f44-41e9-b0a6-f029f2e8422f/invoices')
-        const debtorsPromise = request.get('http://localhost:8080/users/cba36036-9f44-41e9-b0a6-f029f2e8422f/debtors')
+        const userPromise = request.get('http://localhost:8080/users/fea23f2f-d802-4ce8-ba52-5072fadc51dd')
+        const invoicePromise = request.get('http://localhost:8080/users/fea23f2f-d802-4ce8-ba52-5072fadc51dd/invoices')
+        const debtorsPromise = request.get('http://localhost:8080/users/fea23f2f-d802-4ce8-ba52-5072fadc51dd/debtors')
         
 
 
@@ -57,12 +57,16 @@ const MainContainer = () => {
         request.post("http://localhost:8080/invoices", invoice)
     }
 
+    const handlePostSms = (message) => {
+        const request = new Request();
+        request.post("http://localhost:8080/send-messages", message)
+    }
+
     return(
         <>
         <DebtorForm user = {user} onCreate = { handlePost } />
-        <InvoiceForm debtors = {debtors} onCreate = {handlePostInvoice} />
+        <InvoiceForm debtors = {debtors} onCreate = {handlePostInvoice} onCreate = {handlePostSms}/>
         <InvoiceList invoices = {invoices} onDelete = { handleDelete }/>
-        
         </>
     )
 }
