@@ -19,9 +19,9 @@ const MainContainer = () => {
     const getAllData = () => {
         console.log("getting data..");
         const request = new Request();
-        const userPromise = request.get('http://localhost:8080/users/83a85226-1f57-46ca-aa64-e053eaa2ac0e')
-        const invoicePromise = request.get('http://localhost:8080/users/83a85226-1f57-46ca-aa64-e053eaa2ac0e/invoices')
-        const debtorsPromise = request.get('http://localhost:8080/users/83a85226-1f57-46ca-aa64-e053eaa2ac0e/debtors')
+        const userPromise = request.get('http://localhost:8080/users/cba36036-9f44-41e9-b0a6-f029f2e8422f')
+        const invoicePromise = request.get('http://localhost:8080/users/cba36036-9f44-41e9-b0a6-f029f2e8422f/invoices')
+        const debtorsPromise = request.get('http://localhost:8080/users/cba36036-9f44-41e9-b0a6-f029f2e8422f/debtors')
         
 
 
