@@ -21,7 +21,7 @@ import java.util.List;
 public class SMSController {
 
     public static class MessageDetails {
-        public List<String> numbers;
+        public String mobile;
         public String message;
     }
 
@@ -35,16 +35,14 @@ public class SMSController {
         Twilio.init(twilioAccountSid, twilioAuthToken);
         }
 
-        @PostMapping("/send-messages")
+        @PostMapping("/send-message")
         @ResponseStatus(HttpStatus.ACCEPTED)
         public void sendMessages(@RequestBody MessageDetails messageDetails) {
-            messageDetails.numbers.stream().forEach( number -> {
-                Message message = Message.creator(
-                        new PhoneNumber(number),
-                        new PhoneNumber(myTwilioPhoneNumber),
-                        messageDetails.message).create();
-                System.out.println("Sent message w/ sid: " + message.getSid());
-            });
-        }
+            Message message = Message.creator(
+                    new PhoneNumber(messageDetails.mobile),
+                    new PhoneNumber(myTwilioPhoneNumber),
+                    messageDetails.message).create();
+            System.out.println("Sent message w/ sid: " + message.getSid());
+            };
 
 }

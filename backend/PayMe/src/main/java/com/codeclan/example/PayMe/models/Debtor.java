@@ -16,8 +16,8 @@ public class Debtor {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "mobile")
+    private String mobile;
 
     @JsonIgnoreProperties({"debtors"})
     @ManyToOne
@@ -31,9 +31,9 @@ public class Debtor {
     private List<Invoice>invoices;
 
 
-    public Debtor(String name, String email, User user) {
+    public Debtor(String name, String mobile, User user) {
         this.name = name;
-        this.email = email;
+        this.mobile = mobile;
         this.user = user;
         this.invoices = new ArrayList<Invoice>();
     }
@@ -57,12 +57,12 @@ public class Debtor {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public List<Invoice> getInvoices() {
