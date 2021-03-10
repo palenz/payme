@@ -1,0 +1,53 @@
+.hero{
+    display: flex;
+    justify-content: center;
+    margin-top: 8rem;
+}
+
+.herowrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+h5{
+    color: #6034A7;
+    font-weight:700;
+}
+
+.row {
+    padding-top: 6rem;
+    width: 100%;
+    display: flex;
+    margin-bottom: 8rem;
+}
+.column {
+    float: left;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .left {
+    width: 66%;
+    margin-right: 4rem;
+
+  }
+  
+  .right {
+    width: 33%;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 25px;
+    margin-bottom: 2.5rem;
+    box-shadow: 0px 0px 4px #0000000F;
+  }
+  
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  

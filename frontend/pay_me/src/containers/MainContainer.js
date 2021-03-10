@@ -1,5 +1,7 @@
 import React, {useState, useEffect, Fragment} from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Group1 from '../Group1.png'
+import FU from '../fu.png'
+import './MainContainer.css';
 import Request from '../helpers/request';
 import DebtorForm from '../components/DebtorForm';
 import InvoiceList from '../components/InvoiceList';
@@ -18,7 +20,7 @@ const MainContainer = () => {
 
     const getAllData = () => {
         console.log("getting data..");
-        let user_id = "3efde11b-5413-4711-b9f9-cc04fdd8fdc0"
+        let user_id = "0c9f355e-a959-4d17-8711-857a82abbd1e"
         const request = new Request();
         const userPromise = request.get(`http://localhost:8080/users/${user_id}`)
         const invoicePromise = request.get(`http://localhost:8080/users/${user_id}/invoices`)
@@ -65,9 +67,24 @@ const MainContainer = () => {
 
     return(
         <>
+        <div className="nav">
+        <img src={Group1} alt="Logo" className="logo"/>
+        </div>
+        <div className="hero">
+        <div className="herowrap">
+        <img src={FU} alt="fu" className="fu"/>
+        <h5>the no nonsense invoicing service</h5>
+        </div>
+        </div>
+        <div className="row">
+        <div className="column left" >
         <DebtorForm user = {user} onCreate = { handlePost } />
         <InvoiceForm debtors = {debtors} onCreate = {handlePostInvoice} onCreate = {handlePostSms}/>
-        <InvoiceList invoices = {invoices} onDelete = { handleDelete }/>
+        </div>
+        <div className="column right" >
+        <InvoiceList invoices = {invoices} onDelete = { handleDelete } />
+        </div>
+        </div>
         </>
     )
 }

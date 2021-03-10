@@ -15,12 +15,12 @@ const Invoice = ({invoice, onDelete}) => {
 
   return (
     <Fragment>
-    <h1>
+    <h4>
     {invoice.debtor.name} 
-    </h1>
+    </h4>
     <p>Reason: {invoice.reason}</p>
     <p>Amount: {invoice.amount}</p>
-    <button onClick={handleDelete}>Delete</button>
+    <button className="deletebutton" onClick={handleDelete}>X</button>
     </Fragment>
   )
 }

@@ -53,6 +53,8 @@ const InvoiceForm = (props) => {
 
     return (
       <>
+      <div className='debtorform'>
+      <h1>Create invoice</h1>
         <form onSubmit={handleSubmit} >
         <select name="debtor" onChange={handleDebtor} defaultValue={'select-ship'}>
         <option disabled value="select-debtor">Select a Debtor</option>
@@ -62,6 +64,7 @@ const InvoiceForm = (props) => {
         <input type="text" placeholder="reason" name="reason" onChange={handleReasonChange}/>
         <button onClick = {handleSms} type="submit">save</button >
         </form>
+        </div>
       </>
       )
   
