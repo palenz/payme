@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 const DebtorForm = (props) => {
 
-    const [debtor, setDebtor] = useState({name: "", email: "", user: undefined});
+    const [debtor, setDebtor] = useState({name: "", mobile: "", user: undefined});
 
     useEffect(() => {
       setDebtor({...debtor, user: props.user})
@@ -15,22 +15,22 @@ const DebtorForm = (props) => {
       setDebtor(newDebtor)
     }
 
-    const handleEmailChange = (e) => {
+    const handleMobileChange = (e) => {
       let newDebtor = debtor;
-      newDebtor.email = e.target.value
+      newDebtor.mobile = e.target.value
       setDebtor(newDebtor)
     }
 
     const handleSubmit = (e) => {
       props.onCreate(debtor);
-      setDebtor({name: "", email: "", user: undefined})
+      setDebtor({name: "", mobile: "", user: undefined})
     }
 
     return (
       <>
         <form onSubmit={handleSubmit}>
         <input type="text" placeholder="debtor name" name="name" onChange={handleNameChange}/>
-        <input type="text" placeholder="debtor email" name="email" onChange={handleEmailChange}/>
+        <input type="text" placeholder="debtor mobile" name="mobile" onChange={handleMobileChange}/>
         <button type="submit">save</button>
         </form>
       </>

@@ -18,10 +18,11 @@ const MainContainer = () => {
 
     const getAllData = () => {
         console.log("getting data..");
+        let user_id = "3efde11b-5413-4711-b9f9-cc04fdd8fdc0"
         const request = new Request();
-        const userPromise = request.get('http://localhost:8080/users/fea23f2f-d802-4ce8-ba52-5072fadc51dd')
-        const invoicePromise = request.get('http://localhost:8080/users/fea23f2f-d802-4ce8-ba52-5072fadc51dd/invoices')
-        const debtorsPromise = request.get('http://localhost:8080/users/fea23f2f-d802-4ce8-ba52-5072fadc51dd/debtors')
+        const userPromise = request.get(`http://localhost:8080/users/${user_id}`)
+        const invoicePromise = request.get(`http://localhost:8080/users/${user_id}/invoices`)
+        const debtorsPromise = request.get(`http://localhost:8080/users/${user_id}/debtors`)
         
 
 
@@ -59,7 +60,7 @@ const MainContainer = () => {
 
     const handlePostSms = (message) => {
         const request = new Request();
-        request.post("http://localhost:8080/send-messages", message)
+        request.post("http://localhost:8080/send-message", message)
     }
 
     return(

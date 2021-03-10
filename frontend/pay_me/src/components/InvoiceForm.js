@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 const InvoiceForm = (props) => {
 
     const [invoice, setInvoice] = useState({amount: 0, reason: "", settlementDate: null, debtor: undefined});
-    const [message, setMessage] = useState({numbers:[], message: ""})
+    const [message, setMessage] = useState({mobile:"", message: ""})
 
     useEffect(() => {
       setInvoice({...invoice, user: props.d})
@@ -32,7 +32,7 @@ const InvoiceForm = (props) => {
 
     const handleSms =(e) => {
         let newSms = message;
-        newSms.numbers.push(invoice.debtor.email); 
+        newSms.mobile = invoice.debtor.mobile; 
         newSms.message = invoice.reason;
         setMessage(newSms);
         props.onCreate(message);
@@ -42,7 +42,7 @@ const InvoiceForm = (props) => {
     const handleSubmit = (e) => {
       props.onCreate(invoice);
       console.log(invoice);
-      setInvoice({name: "", email: "", settlementDate: null, debtor: undefined})
+      setInvoice({name: "", mobile: "", settlementDate: null, debtor: undefined})
     }
 
    
