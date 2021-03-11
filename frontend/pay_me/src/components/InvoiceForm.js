@@ -7,7 +7,7 @@ const InvoiceForm = (props) => {
     const [message, setMessage] = useState({mobile:"", message: ""})
 
     useEffect(() => {
-      setInvoice({...invoice, user: props.d})
+      setInvoice({...invoice, user: props.dedtor})
     }, [props.user])
 
     const handleAmountChange = (e) => {
@@ -40,7 +40,7 @@ const InvoiceForm = (props) => {
 
 
     const handleSubmit = (e) => {
-      props.onCreate(invoice);
+      props.onPost(invoice);
       console.log(invoice);
       setInvoice({name: "", mobile: "", settlementDate: null, debtor: undefined})
     }
@@ -56,7 +56,7 @@ const InvoiceForm = (props) => {
       <div className='debtorform'>
       <h1>Create invoice</h1>
         <form onSubmit={handleSubmit} >
-        <select name="debtor" onChange={handleDebtor} defaultValue={'select-ship'}>
+        <select name="debtor" onChange={handleDebtor} defaultValue={'select-debtor'}>
         <option disabled value="select-debtor">Select a Debtor</option>
         {debtorOptions}
         </select>

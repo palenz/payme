@@ -20,7 +20,7 @@ const MainContainer = () => {
 
     const getAllData = () => {
         console.log("getting data..");
-        let user_id = "3762e1e7-00c4-4f54-8b30-21b110ee5ac2"
+        let user_id = "f334efd6-1783-4f92-8a90-9f4044afe9f0"
         const request = new Request();
         const userPromise = request.get(`http://localhost:8080/users/${user_id}`)
         const invoicePromise = request.get(`http://localhost:8080/users/${user_id}/invoices`)
@@ -79,7 +79,7 @@ const MainContainer = () => {
         <div className="row">
         <div className="column left" >
         <DebtorForm user = {user} onCreate = { handlePost } />
-        <InvoiceForm debtors = {debtors} onCreate = {handlePostInvoice} onCreate = {handlePostSms}/>
+        <InvoiceForm debtors = {debtors} onPost = {handlePostInvoice} onCreate = {handlePostSms}/>
         </div>
         <div className="column right" >
         <InvoiceList invoices = {invoices} onDelete = { handleDelete } />
