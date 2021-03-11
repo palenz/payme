@@ -73,7 +73,7 @@ const MainContainer = () => {
         <div className="hero">
         <div className="herowrap">
         <img src={FU} alt="fu" className="fu"/>
-        <h5>THE NO-NONSENSE INVOICING SERCICE</h5>
+        <h5>THE NO-NONSENSE INVOICING SERVICE</h5>
         </div>
         </div>
         <div className="row">
