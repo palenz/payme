@@ -1,7 +1,6 @@
 package com.codeclan.example.PayMe.controllers;
-
+import com.codeclan.example.PayMe.repositories.UserRepository;
 import com.twilio.Twilio;
-import com.twilio.rest.api.v2010.account.Call;
 import com.twilio.rest.api.v2010.account.Message;
 
 import com.twilio.type.PhoneNumber;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.net.URI;
-import java.util.List;
 
 
 @Controller
@@ -24,6 +21,9 @@ public class SMSController {
         public String mobile;
         public String message;
     }
+
+    @Autowired
+    UserRepository userRepository;
 
     @Value("${phoneNumber}")
     private String myTwilioPhoneNumber;
@@ -43,6 +43,6 @@ public class SMSController {
                     new PhoneNumber(myTwilioPhoneNumber),
                     messageDetails.message).create();
             System.out.println("Sent message w/ sid: " + message.getSid());
-            };
+        };
 
 }

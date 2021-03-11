@@ -2,6 +2,7 @@ package com.codeclan.example.PayMe.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.id.UUIDGenerator;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import javax.persistence.*;
 import javax.persistence.Table;
@@ -82,4 +83,5 @@ public class Invoice {
     public void setId(UUID id) {
         this.id = id;
     }
+
 }
