@@ -5,6 +5,7 @@ const Invoice = ({invoice, onDelete}) => {
 
   const handleDelete = () => {
     onDelete(invoice.id)
+    window.location.reload(false);
   }
 
 
