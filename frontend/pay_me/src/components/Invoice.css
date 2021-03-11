@@ -3,6 +3,11 @@
     align-items:center;
     justify-content: space-between;
 }
+.line {
+  background-color: #ececec;
+  width: 100%;
+  height: 2px;
+}
 
 h4 {
   text-align: left;
