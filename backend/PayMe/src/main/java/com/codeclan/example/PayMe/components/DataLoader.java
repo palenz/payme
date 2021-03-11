@@ -28,10 +28,10 @@ public class DataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args) {
 
-        User user1 = new User("James Brown", "+445555555");
+        User user1 = new User("James Brown", "james","1");
         userRepository.save(user1);
 
-        User user2 = new User("Mike Boyd", "+4411111111");
+        User user2 = new User("Mike Boyd", "mike", "123");
         userRepository.save(user2);
 
         Debtor debtor1 = new Debtor("Mike Graham", "+2222222222", user1);

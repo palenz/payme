@@ -26,6 +26,11 @@ public class UserController {
     @Autowired
     InvoiceRepository invoiceRepository;
 
+    public static class SignIn{
+        public String email;
+        public String password;
+    }
+
     @GetMapping(value = "/users")
     public ResponseEntity<List<User>> getAllUsers(){
         return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
@@ -41,6 +46,17 @@ public class UserController {
     public ResponseEntity<User> postUser (@RequestBody User user){
         userRepository.save(user);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
+    @PostMapping(value = "/signin")
+    public ResponseEntity signIn(@RequestBody SignIn signIn){
+        User db_user = userRepository.findByEmail(signIn.email);
+        if (db_user.getPassword() == signIn.password) {
+            userRepository.save(db_user);
+            return new ResponseEntity<>(userRepository.findByEmail(signIn.email).getId(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
     }
 
     @DeleteMapping(value = "/users/{id}")
