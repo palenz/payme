@@ -7,7 +7,7 @@ const AuthContainer = () => {
     
     return(
         <>
-        <h1>Fuck you. Pay me.</h1>
+        <h1>Pay me.</h1>
         <SignIn></SignIn>
 
         <h4><Link to="/signup">Or register here</Link></h4>

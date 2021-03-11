@@ -7,19 +7,13 @@ import Register from './components/Register'
 
 function App() {
   
-  const [id, setId] = useState(null);
-  
-  const EstablishUserId = (id) => {
-    setId(id)
-  }
-
   return (
     <Router>
     <>
    
       <Route exact path="/" component={AuthContainer} />
-      <Route exact path="/signin" hello="hello" component={AuthContainer} />
-      <Route path="/dashboard" userId = {id} component={MainContainer} />
+      <Route exact path="/signin" component={AuthContainer} />
+      <Route path="/dashboard" component={MainContainer} />
       <Route path="/signup" component={Register} />
 
     </>
