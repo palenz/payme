@@ -20,7 +20,7 @@ const MainContainer = () => {
 
     const getAllData = () => {
         console.log("getting data..");
-        let user_id = "887a3d49-4254-4037-940f-a6b4b49c16ec"
+        let user_id = "3762e1e7-00c4-4f54-8b30-21b110ee5ac2"
         const request = new Request();
         const userPromise = request.get(`http://localhost:8080/users/${user_id}`)
         const invoicePromise = request.get(`http://localhost:8080/users/${user_id}/invoices`)
