@@ -1,5 +1,7 @@
 import React, {useState, useEffect, Fragment} from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Group1 from '../Group1.png'
+import FU from '../fu.png'
+import './MainContainer.css';
 import Request from '../helpers/request';
 import DebtorForm from '../components/DebtorForm';
 import InvoiceList from '../components/InvoiceList';
@@ -65,9 +67,24 @@ const MainContainer = () => {
 
     return(
         <>
+        <div className="nav">
+        <img src={Group1} alt="Logo" className="logo"/>
+        </div>
+        <div className="hero">
+        <div className="herowrap">
+        <img src={FU} alt="fu" className="fu"/>
+        <h5>THE NO-NONSENSE INVOICING SERVICE</h5>
+        </div>
+        </div>
+        <div className="row">
+        <div className="column left" >
         <DebtorForm user = {user} onCreate = { handlePost } />
-        <InvoiceForm debtors = {debtors} onCreate = {handlePostInvoice} onCreate = {handlePostSms}/>
-        <InvoiceList invoices = {invoices} onDelete = { handleDelete }/>
+        <InvoiceForm debtors = {debtors} onPost = {handlePostInvoice} onCreate = {handlePostSms}/>
+        </div>
+        <div className="column right" >
+        <InvoiceList invoices = {invoices} onDelete = { handleDelete } />
+        </div>
+        </div>
         </>
     )
 }

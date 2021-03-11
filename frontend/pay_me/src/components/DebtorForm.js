@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './DebtorForm.css';
 
 
 const DebtorForm = (props) => {
@@ -28,11 +29,14 @@ const DebtorForm = (props) => {
 
     return (
       <>
+      <div className='debtorform'>
+        <h1>Add someone to invoice</h1>
         <form onSubmit={handleSubmit}>
         <input type="text" placeholder="debtor name" name="name" onChange={handleNameChange}/>
         <input type="text" placeholder="debtor mobile" name="mobile" onChange={handleMobileChange}/>
         <button type="submit">save</button>
         </form>
+        </div>
       </>
       )
   

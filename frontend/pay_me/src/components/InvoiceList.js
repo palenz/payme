@@ -2,6 +2,7 @@ import React from 'react';
 import Invoice from './Invoice.js';
 
 
+
 const InvoiceList = (props) => {
 
 	if (props.invoices.length === 0){
@@ -11,7 +12,7 @@ const InvoiceList = (props) => {
 	const invoices = props.invoices.map((invoice, index) => {
 	  return (
 	    <li key={index} >
-	    <div >
+	    <div>
 	    <Invoice invoice={invoice} onDelete = { props.onDelete }/>
 	    </div>
 	    </li>
@@ -19,9 +20,12 @@ const InvoiceList = (props) => {
 	})
 
 	return (
-	  <ul >
-	    {invoices}
-	  </ul>
+	<>
+		<h1>Outstanding invoices</h1>
+			<ul >
+				{invoices}
+			</ul>
+	</>
 	)
 }
  export default InvoiceList;
