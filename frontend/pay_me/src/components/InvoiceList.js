@@ -6,7 +6,7 @@ import Invoice from './Invoice.js';
 const InvoiceList = (props) => {
 
 	if (props.invoices.length === 0){
-	  return (<p>Loading...</p>)
+	  return (<p>None so far...</p>)
 	}
 
 	const invoices = props.invoices.map((invoice, index) => {

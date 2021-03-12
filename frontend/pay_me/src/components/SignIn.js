@@ -33,12 +33,10 @@ const SignIn = ({hello}) => {
                 setAuthState(false)
             } else {
                 let parsed = JSON.parse(raw);
-                setVerifiedUserId(parsed)
                 setAuthState(true)
+                localStorage.setItem("id", parsed)
                 history.push('/dashboard')
             }})
-        // props.EstablishUserId(verifiedUserId);
-        
         }
 
     return(

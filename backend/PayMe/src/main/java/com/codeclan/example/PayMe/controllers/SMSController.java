@@ -50,7 +50,7 @@ public class SMSController {
 //                    new PhoneNumber(messageDetails.mobile),
 //                    new PhoneNumber(myTwilioPhoneNumber),
 //                    messageDetails.message).create();
-//            System.out.println("Sent message w/ sid: " + message.getSid());
+            System.out.println("Sent message w/ sid:");
         };
 
 
