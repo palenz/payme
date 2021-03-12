@@ -30,7 +30,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="636d0157-8990-470b-839a-bd746ddb6299" name="Default Changelist" comment="" />
+    <list default="true" id="636d0157-8990-470b-839a-bd746ddb6299" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../backend/PayMe/db/paymeservice_db.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/PayMe/db/paymeservice_db.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/PayMe/src/main/java/com/codeclan/example/PayMe/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/PayMe/src/main/java/com/codeclan/example/PayMe/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/PayMe/src/main/java/com/codeclan/example/PayMe/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/PayMe/src/main/java/com/codeclan/example/PayMe/repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,6 +61,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="636d0157-8990-470b-839a-bd746ddb6299" name="Default Changelist" comment="" />
@@ -76,5 +82,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

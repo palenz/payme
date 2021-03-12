@@ -9,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+
+import java.util.*;
 
 
 @RestController
@@ -36,27 +35,24 @@ public class UserController {
         return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
     };
 
-
     @GetMapping(value = "/users/{id}")
     public ResponseEntity getUser(@PathVariable UUID id){
         return new ResponseEntity<>(userRepository.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/users")
-    public ResponseEntity<User> postUser (@RequestBody User user){
+    @PostMapping(value = "/signup")
+    public ResponseEntity<User> postUser(@RequestBody User user){
         userRepository.save(user);
-        return new ResponseEntity<>(user, HttpStatus.CREATED);
+        UUID db_user_id = user.getId();
+        return new ResponseEntity(db_user_id, HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/signin")
-    public ResponseEntity signIn(@RequestBody SignIn signIn){
+    public ResponseEntity<User> signIn(@RequestBody SignIn signIn){
         User db_user = userRepository.findByEmail(signIn.email);
-        if (db_user.getPassword() == signIn.password) {
-            userRepository.save(db_user);
-            return new ResponseEntity<>(userRepository.findByEmail(signIn.email).getId(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-        }
+        if (signIn.password.equals(db_user.getPassword())){
+            return new ResponseEntity(db_user.getId(), HttpStatus.OK);
+        } else return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @DeleteMapping(value = "/users/{id}")
@@ -66,7 +62,6 @@ public class UserController {
             return new ResponseEntity(id, HttpStatus.NOT_FOUND);
         } else {
             userRepository.delete(userToDelete.get());
-//          Create get invoices and debtors by user id. This will be done in the invoice and debtors repo
             return new ResponseEntity(id, HttpStatus.OK);
         }
     }

@@ -27,12 +27,10 @@ public class User {
     @Column
     private String password;
 
-//    Just keep user below to show all nested tables
-    @JsonIgnoreProperties({"debtors", "debtor", "user"})
+    @JsonIgnoreProperties({"debtors", "debtor", "user", "password"})
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Debtor>debtors;
-
 
 
     public User (String name, String email, String password){

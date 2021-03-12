@@ -43,6 +43,11 @@ class PayMeApplicationTests {
 //	public void canFindInvoicesForUserId(){
 //		List<Invoice> invoices = invoiceRepository.findByDebtorUserId(1L);
 //		assertEquals(2, invoices.size());
+
+	@Test
+	public void canFindByMobile(){
+		assertEquals(true, userRepository.existsByEmail("+445555555"));
+	}
 	}
 
 

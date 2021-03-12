@@ -28,6 +28,7 @@ public class DataLoader implements ApplicationRunner {
 
     public void run(ApplicationArguments args) {
 
+
         User user1 = new User("James Brown", "james","1");
         userRepository.save(user1);
 

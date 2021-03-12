@@ -33,7 +33,7 @@ const InvoiceForm = (props) => {
     const handleSms =(e) => {
         let newSms = message;
         newSms.mobile = invoice.debtor.mobile; 
-        newSms.message = "FUCK YOU PAY ME! " + "you owe me " + invoice.amount + " because " + invoice.reason;
+        newSms.message = "Hello, " + invoice.debtor.name + "... FUCK YOU, PAY ME! " + "you owe me " + invoice.amount + "quid, because" + invoice.reason + "... Bye";
         setMessage(newSms);
         props.onCreate(message);
     }
