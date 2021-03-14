@@ -8,7 +8,7 @@
 }
 
 .fu {
-  max-width: 28rem;
+  max-width: 25rem;
   margin-bottom: -1rem;
 }
 
@@ -61,3 +61,4 @@ ul {
   cursor: pointer;
   border-radius: 22px;
 }
+

@@ -45,6 +45,7 @@ const SignIn = ({hello}) => {
         <form onSubmit={handleSubmit}>
             <input type="text" placeholder="email" onChange={handleEmailChange}></input>
             <input type="password" placeholder="password" onChange={handlePasswordChange}></input>
+            <br></br>
             <button type="submit">Log in</button>
         </form>
 

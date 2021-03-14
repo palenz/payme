@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 
 const InvoiceForm = (props) => {
@@ -9,6 +10,8 @@ const InvoiceForm = (props) => {
     useEffect(() => {
       setInvoice({...invoice, user: props.dedtor})
     }, [props.user])
+
+    let history = useHistory();
 
     const handleAmountChange = (e) => {
       let newInvoice = invoice;

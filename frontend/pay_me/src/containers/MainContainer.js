@@ -6,6 +6,7 @@ import Request from '../helpers/request';
 import DebtorForm from '../components/DebtorForm';
 import InvoiceList from '../components/InvoiceList';
 import InvoiceForm from '../components/InvoiceForm';
+import { useHistory } from 'react-router-dom';
 
 const MainContainer = () => {
 
@@ -15,6 +16,7 @@ const MainContainer = () => {
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
+        checkLogIn();
         getAllData();
     }, []);
 
@@ -34,15 +36,20 @@ const MainContainer = () => {
                 setDebtors(data[1]);
                 setUser(data[2]);
             })
-            .then(setLoaded(true))
+            .then(setLoaded(true))   
+    }
 
-        
+    let history = useHistory();
+
+    const checkLogIn = () => {
+        if (localStorage.length === 0){
+            history.push("/signin")
+        }
     }
 
     if (!{invoices}) {
         return null
       }
-
 
     const handleDelete = (id) =>  {
         const request = new Request();
@@ -65,10 +72,24 @@ const MainContainer = () => {
         request.post("http://localhost:8080/send-message", message)
     }
 
+    const handleLogOut = () => {
+        localStorage.removeItem("id")
+        history.push('/signin')
+    }
+
     return(
         <>
         <div className="nav">
         <img src={Group1} alt="Logo" className="logo"/>
+        
+        <nav>
+        <ul id="menu">
+            <li><a href="/about">About</a></li>
+            <li><a href="/docs">Docs</a></li>
+            <li><a href="/" onClick={handleLogOut}>Log out</a></li>
+        </ul>
+        </nav>
+        
         </div>
         <div className="hero">
         <div className="herowrap">
@@ -77,11 +98,11 @@ const MainContainer = () => {
         </div>
         </div>
         <div className="row">
-        <div className="column left" >
+        <div className="left" >
         <DebtorForm user = {user} onCreate = { handlePost } />
         <InvoiceForm debtors = {debtors} onPost = {handlePostInvoice} onCreate = {handlePostSms}/>
         </div>
-        <div className="column right" >
+        <div className="right" >
         <InvoiceList invoices = {invoices} onDelete = { handleDelete } />
         </div>
         </div>
