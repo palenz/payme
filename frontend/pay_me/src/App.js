@@ -1,8 +1,7 @@
 import './App.css';
-import React, {useState, useEffect, Fragment} from 'react';
 import AuthContainer from './containers/AuthContainer'
 import MainContainer from './containers/MainContainer'
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Register from './components/Register';
 import About from './components/About';
 import Docs from './components/Docs';

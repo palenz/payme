@@ -7,7 +7,7 @@ const SignIn = ({hello}) => {
     let history = useHistory();
 
     const [credentials, setCredentials] = useState({email: "", password: ""});
-    const [verifiedUserId, setVerifiedUserId] = useState(null);
+    const [verifiedUserId, setVerifiedUserId] = useState("empty");
     const [authState, setAuthState] = useState();
 
 
@@ -49,7 +49,7 @@ const SignIn = ({hello}) => {
             <button type="submit">Log in</button>
         </form>
 
-        {authState == null ? (<p></p>) : (authState == false ?(<h2>Wrong credentials</h2>) : (<h2>Welcome!</h2>))}
+        {authState == "empty" ? (<p></p>) : (authState == false ?(<h2>Wrong credentials</h2>) : (null))}
         </>
     );
 

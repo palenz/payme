@@ -8,6 +8,7 @@ const Register = () => {
 
     const [credentials, setCredentials] = useState({name: "", email: "", password: ""});
     const [verifiedUserId, setVerifiedUserId] = useState(null);
+    const [invalidEmail, setInvalidEmail] = useState();
 
 
     const handleNameChange = (e) => {
@@ -30,14 +31,16 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const request = new Request();
-        request.post("http://localhost:8080/signup", credentials)
-        .then(async (res) => {
-            const raw = await res.text();
-            const parsed = JSON.parse(raw);
-            setVerifiedUserId(parsed)
-        })
-        history.push('/')
+        if (credentials.email.includes("@") && credentials.email.includes(".")){
+            const request = new Request();
+            request.post("http://localhost:8080/signup", credentials)
+            .then(async (res) => {
+                const raw = await res.text();
+                const parsed = JSON.parse(raw);
+                setVerifiedUserId(parsed)
+            })
+            history.push('/')
+        } else {setInvalidEmail(true)}
     }
 
     return(
@@ -49,6 +52,7 @@ const Register = () => {
             <input type="password" placeholder="password" onChange={handlePasswordChange}></input>
             <button type="submit" onClick={Link}>Sign up</button>
         </form>
+        {invalidEmail && <h2>Enter a valid email</h2>}
         </>
     );
 
