@@ -84,4 +84,13 @@ public class Debtor {
         this.id = id;
     }
 
+    public int getMoneyOwed(){
+        int moneyOwed = 0;
+        for (Invoice invoice : this.invoices){
+            moneyOwed += invoice.getAmount();
+        }
+        return moneyOwed;
+    }
+
+    
     }

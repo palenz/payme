@@ -11,4 +11,5 @@ import java.util.UUID;
 @Repository
 public interface DebtorRepository extends JpaRepository<Debtor, UUID> {
     List<Debtor> findByUserId(UUID id);
+    Debtor findByMobile(String mobile);
 }

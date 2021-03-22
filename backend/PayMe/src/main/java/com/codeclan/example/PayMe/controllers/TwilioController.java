@@ -22,59 +22,45 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @EnableScheduling
 @Controller
-public class SMSController {
-
-    public static class MessageDetails {
-        public String mobile;
-        public String message;
-    }
+public class TwilioController {
 
 
+    @Autowired
+    DebtorRepository debtorRepository;
 
-    @Scheduled(cron = "0 45 0 * * *")
+    @Autowired
+    @Value("${twilioAccountSid}")
+    private String twilioAccountSid;
+
+    @Autowired
+    @Value("${twilioAuthToken}")
+    private String twilioAuthToken;
+
+    @Autowired
+    @Value("${phoneNumber}")
+    private String myTwilioPhoneNumber;
+
+    @Scheduled(cron = "0 5 1 * * MON,FRI,SUN", zone = "GMT")
     void callTrigger(){
-
+        Twilio.init(twilioAccountSid, twilioAuthToken);
         for (Debtor debtor : debtorRepository.findAll()){
 
             Call call = Call.creator(
                     new com.twilio.type.PhoneNumber(debtor.getMobile()),
                     new com.twilio.type.PhoneNumber(myTwilioPhoneNumber),
-                    new com.twilio.type.Twiml("<Response><Say>hello! this worked</Say></Response>"))
+                    new com.twilio.type.Twiml(String.format("<Response><Say>Hello, %s... Fuck you, pay me. You owe %x pounds. Bye.</Say></Response>", debtor.getName(), debtor.getMoneyOwed() )))
                     .create();
             System.out.println("Call works");
+
+            Message message = Message.creator(
+                    new com.twilio.type.PhoneNumber(debtor.getMobile()),
+                    new com.twilio.type.PhoneNumber(myTwilioPhoneNumber),
+                    String.format("Remember to repay %s. You owe £%x. Sent by FU pay me app.", debtor.getUser().getName(), debtor.getMoneyOwed() )).create();
+            System.out.println("First debtor call, user: ");
+
+
         }
     }
 
-    @Autowired
-    UserRepository userRepository;
 
-    @Autowired
-    DebtorRepository debtorRepository;
-
-    @Value("${phoneNumber}")
-    private String myTwilioPhoneNumber;
-
-    @Autowired
-    public SMSController(
-            @Value("${twilioAccountSid}") String twilioAccountSid,
-            @Value("${twilioAuthToken}") String twilioAuthToken) {
-        Twilio.init(twilioAccountSid, twilioAuthToken);
-        }
-
-        @PostMapping("/send-message")
-        @ResponseStatus(HttpStatus.ACCEPTED)
-
-        public void sendMessages(@RequestBody MessageDetails messageDetails) {
-            Call call = Call.creator(
-                    new com.twilio.type.PhoneNumber(messageDetails.mobile),
-                    new com.twilio.type.PhoneNumber(myTwilioPhoneNumber),
-                    new com.twilio.type.Twiml(String.format("<Response><Say>%s</Say></Response>", messageDetails.message)))
-                    .create();
-//            Message message = Message.creator(
-//                    new PhoneNumber(messageDetails.mobile),
-//                    new PhoneNumber(myTwilioPhoneNumber),
-//                    messageDetails.message).create();
-            System.out.println("First debtor call, user: ");
-//            ADD USER NAME ABOVE
-        };
 }
