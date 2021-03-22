@@ -1,5 +1,5 @@
-import React, {useState, useEffect, Fragment} from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, {useState} from 'react';
+import { useHistory } from 'react-router-dom';
 import Request from '../helpers/request';
 
 const SignIn = ({hello}) => {
@@ -7,7 +7,6 @@ const SignIn = ({hello}) => {
     let history = useHistory();
 
     const [credentials, setCredentials] = useState({email: "", password: ""});
-    const [verifiedUserId, setVerifiedUserId] = useState("empty");
     const [authState, setAuthState] = useState();
 
 
@@ -29,7 +28,7 @@ const SignIn = ({hello}) => {
         request.post("http://localhost:8080/signin", credentials)
         .then(async (res) => {
             const raw = await res.text();
-            if (res.status == 500){
+            if (res.status === 500){
                 setAuthState(false)
             } else {
                 let parsed = JSON.parse(raw);
@@ -41,7 +40,7 @@ const SignIn = ({hello}) => {
 
     return(
         <>
-        <h4>Sign in here: {hello}</h4>
+        <h4>Sign in{hello}</h4>
         <form onSubmit={handleSubmit}>
             <input type="text" placeholder="email" onChange={handleEmailChange}></input>
             <input type="password" placeholder="password" onChange={handlePasswordChange}></input>
@@ -49,7 +48,7 @@ const SignIn = ({hello}) => {
             <button type="submit">Log in</button>
         </form>
 
-        {authState == "empty" ? (<p></p>) : (authState == false ?(<h2>Wrong credentials</h2>) : (null))}
+        {authState === "empty" ? (<p></p>) : (authState === false ?(<h2>Wrong credentials</h2>) : (null))}
         </>
     );
 

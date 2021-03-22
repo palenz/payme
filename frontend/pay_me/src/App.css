@@ -72,3 +72,31 @@ ul {
   border-radius: 22px;
 }
 
+.contentWrapper {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: white;
+  /* padding: 2rem; */
+  border-radius: 25px;
+  margin-bottom: 2.5rem;
+  box-shadow: 0px 0px 4px #0000000F;
+  margin-top: 5rem;
+}
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.content{
+    padding: 2rem;
+    margin-left: 2rem;
+}
+
+p{
+  line-height: 1.8;
+}

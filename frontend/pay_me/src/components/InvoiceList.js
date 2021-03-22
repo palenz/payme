@@ -3,6 +3,7 @@ import Invoice from './Invoice.js';
 
 
 
+
 const InvoiceList = (props) => {
 
 	if (props.invoices.length === 0){
@@ -25,6 +26,11 @@ const InvoiceList = (props) => {
 			<ul >
 				{invoices}
 			</ul>
+		
+		<div id="total">
+			<h4>Total:</h4>
+			<b>£{props.totalOwed}</b>
+		</div>
 	</>
 	)
 }

@@ -13,12 +13,17 @@ const MainContainer = () => {
     const [invoices, setInvoices] = useState([]);
     const [debtors, setDebtors] = useState([]);
     const [user, setUser] = useState([]);
+    const [totalOwed, setTotalOwed] = useState(0);
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         checkLogIn();
         getAllData();
     }, []);
+
+    useEffect(() => {
+        fetchTotalOwed();
+    }, [invoices]);
 
     const getAllData = () => {
         console.log("getting data..");
@@ -28,8 +33,6 @@ const MainContainer = () => {
         const invoicePromise = request.get(`http://localhost:8080/users/${user_id}/invoices`)
         const debtorsPromise = request.get(`http://localhost:8080/users/${user_id}/debtors`)
         
-
-
         Promise.all([invoicePromise, debtorsPromise, userPromise])
             .then((data) => {
                 setInvoices(data[0]);
@@ -50,6 +53,14 @@ const MainContainer = () => {
     if (!{invoices}) {
         return null
       }
+
+    const fetchTotalOwed = () => {
+        let total = 0
+        for (let invoice of invoices){
+            total += invoice.amount;
+        }
+        return setTotalOwed(total);
+    }
 
     const handleDelete = (id) =>  {
         const request = new Request();
@@ -97,13 +108,14 @@ const MainContainer = () => {
         <h5>THE NO-NONSENSE INVOICING SERVICE</h5>
         </div>
         </div>
+
         <div className="row">
         <div className="left" >
         <DebtorForm user = {user} onCreate = { handlePost } />
         <InvoiceForm debtors = {debtors} onPost = {handlePostInvoice} onCreate = {handlePostSms}/>
         </div>
         <div className="right" >
-        <InvoiceList invoices = {invoices} onDelete = { handleDelete } />
+        <InvoiceList invoices = {invoices} totalOwed = {totalOwed} onDelete = { handleDelete } />
         </div>
         </div>
         </>
