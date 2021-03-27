@@ -9,7 +9,7 @@ const DebtorForm = (props) => {
     useEffect(() => {
       setDebtor({...debtor, user: props.user})
     }, [props.user])
-// test
+
 
     const handleNameChange = (e) => {
       let newDebtor = debtor;
