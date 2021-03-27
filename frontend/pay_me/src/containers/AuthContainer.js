@@ -13,9 +13,7 @@ const AuthContainer = () => {
         <>
 
         <div className="nav">
-        <a href="/dashboard">
-        <img src={Group1} alt="Logo" className="logo"/>
-        </a>        
+        <img src={Group1} alt="Logo" className="logo"/>        
         </div>
 
         <div className="hero">

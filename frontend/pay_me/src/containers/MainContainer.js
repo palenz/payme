@@ -1,7 +1,6 @@
 import React, {useState, useEffect, Fragment} from 'react';
-import Group1 from '../Group1.png'
-import FU from '../fu.png'
 import './MainContainer.css';
+import Menu from '../components/Menu.js';
 import Request from '../helpers/request';
 import DebtorForm from '../components/DebtorForm';
 import InvoiceList from '../components/InvoiceList';
@@ -14,7 +13,6 @@ const MainContainer = () => {
     const [debtors, setDebtors] = useState([]);
     const [user, setUser] = useState([]);
     const [totalOwed, setTotalOwed] = useState(0);
-    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
         checkLogIn();
@@ -39,7 +37,6 @@ const MainContainer = () => {
                 setDebtors(data[1]);
                 setUser(data[2]);
             })
-            .then(setLoaded(true))   
     }
 
     let history = useHistory();
@@ -64,8 +61,14 @@ const MainContainer = () => {
 
     const handleDelete = (id) =>  {
         const request = new Request();
-          const url = "http://localhost:8080/invoices/" + id
-          request.delete(url)
+        let url = "http://localhost:8080/invoices/" + id
+        request.delete(url)
+    }
+
+    const deleteDebtor = (id) =>  {
+        const request = new Request();
+        let url = "http://localhost:8080/debtors/" + id
+        request.delete(url)
     }
 
     const handlePost = (debtor) => {
@@ -78,43 +81,17 @@ const MainContainer = () => {
         request.post("http://localhost:8080/invoices", invoice)
     }
 
-    const handlePostSms = (message) => {
-        const request = new Request();
-        request.post("http://localhost:8080/send-message", message)
-    }
-
-    const handleLogOut = () => {
-        localStorage.removeItem("id")
-        history.push('/signin')
-    }
-
     return(
         <>
-        <div className="nav">
-        <img src={Group1} alt="Logo" className="logo"/>
-        
-        <nav>
-        <ul id="menu">
-            <li><a href="/about">About</a></li>
-            <li><a href="/docs">Docs</a></li>
-            <li><a href="/" onClick={handleLogOut}>Log out</a></li>
-        </ul>
-        </nav>
-        
-        </div>
-        <div className="hero">
-        <div className="herowrap">
-        <img src={FU} alt="fu" className="fu"/>
-        <h5>THE NO-NONSENSE INVOICING SERVICE</h5>
-        </div>
-        </div>
+        <Menu></Menu>
+       
 
         <div className="row">
         <div className="left" >
         <DebtorForm user = {user} onCreate = { handlePost } />
-        <InvoiceForm debtors = {debtors} onPost = {handlePostInvoice} onCreate = {handlePostSms}/>
+        <InvoiceForm debtors = {debtors} postInvoice={handlePostInvoice} deleteDebtor={deleteDebtor}/>
         </div>
-        <div className="right" >
+        <div className="right">
         <InvoiceList invoices = {invoices} totalOwed = {totalOwed} onDelete = { handleDelete } />
         </div>
         </div>

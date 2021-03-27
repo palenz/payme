@@ -1,16 +1,8 @@
-import Group1 from '../Group1.png'
-import FU from '../fu.png'
-import { useHistory } from 'react-router-dom';
+import Menu from './Menu.js';
+
 import './Docs.css';
 
 const Docs = () => {
-
-    let history = useHistory();
-
-    const handleLogOut = () => {
-        localStorage.removeItem("id")
-        history.push('/signin')
-    }
 
     const token = localStorage.getItem("id");
 
@@ -18,33 +10,21 @@ const Docs = () => {
     return(
         <>
 
-        <div className="nav">
-        <a href="/dashboard">
-        <img src={Group1} alt="Logo" className="logo"/>
-        </a>
-        <nav>
-        <ul id="menu">
-            <li><a href="/about">About</a></li>
-            <li><a href="/docs">Docs</a></li>
-            <li><a href="/" onClick={handleLogOut}>Log out</a></li>
-        </ul>
-        </nav>
-        
-        </div>
-        <div className="hero">
-        <div className="herowrap">
-        <img src={FU} alt="fu" className="fu"/>
-        <h5>THE NO-NONSENSE INVOICING SERVICE</h5>
-        </div>
-        </div>
+        <Menu></Menu>
         
         <div className="contentWrapper" >
         <div className="content">
         
-        <h1>FU Pay Me's Documentation</h1>
-        <br></br>
-        <p>Your unique token is: <div id="token">{token}</div> Don't share this.</p>
+        <h1>Pay Me's Documentation</h1>
         
+        <p id='text'>Maybe you've used this too much and now it's getting out of hand. 
+        You can use the API endpoints below to view your stored information.</p>
+        <p>The root endpoint should prefix all resources and is only accessible over HTTPS.</p>
+        <p>Your unique ID is:  <div id="token">{token}</div></p>
+        
+        <p>To view all your information:</p> <p id="code">/users/id</p>   
+        <p>To view all your debtors:</p><p id='code'>/users/id/debtors</p>
+        <p>To view all your invoices:</p><p id='code'>/users/id/invoices</p>
         
         </div>
         </div>

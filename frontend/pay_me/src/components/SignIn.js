@@ -48,7 +48,7 @@ const SignIn = ({hello}) => {
             <button type="submit">Log in</button>
         </form>
 
-        {authState === "empty" ? (<p></p>) : (authState === false ?(<h2>Wrong credentials</h2>) : (null))}
+        {authState === "empty" ? (<p></p>) : (authState === false ?(<p>Wrong credentials</p>) : (null))}
         </>
     );
 

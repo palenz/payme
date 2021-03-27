@@ -1,17 +1,21 @@
 package com.codeclan.example.PayMe.models;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import javax.persistence.*;
 import com.fasterxml.jackson.annotation.*;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "debtors")
 public class Debtor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @Column(name = "name")
     private String name;
@@ -24,7 +28,6 @@ public class Debtor {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-//One to many goes here
     @JsonIgnoreProperties({"debtors", "debtor", "user", "invoices", "id"})
     @OneToMany(mappedBy = "debtor", fetch = FetchType.LAZY) // LAZY OR EAGER?!
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
@@ -69,21 +72,21 @@ public class Debtor {
         return invoices;
     }
 
-
     public void addInvoice(Invoice invoice) {
         this.invoices.add(invoice);
     }
 
     public void setInvoices(List<Invoice> invoices) {this.invoices = invoices;}
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
+    @JsonIgnore
     public int getMoneyOwed(){
         int moneyOwed = 0;
         for (Invoice invoice : this.invoices){
