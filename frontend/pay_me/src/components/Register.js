@@ -7,8 +7,9 @@ const Register = () => {
     let history = useHistory();
 
     const [credentials, setCredentials] = useState({name: "", email: "", password: ""});
-    const [verifiedUserId, setVerifiedUserId] = useState(null);
     const [invalidEmail, setInvalidEmail] = useState();
+    const [repeatPassword, setRepeatPassword] = useState();
+    const [wrongPasswordMessage, setWrongPasswordMessage] = useState();
 
 
     const handleNameChange = (e) => {
@@ -29,15 +30,28 @@ const Register = () => {
         setCredentials(userCredentials)
       }
 
+    const handleRepeatPasswordChange = (e) => {
+        setRepeatPassword(e.target.value)
+    }
+
+    const checkPasswords = (e) =>{
+        e.preventDefault()
+        if (repeatPassword === credentials.password){
+            handleSubmit()
+        } else {
+            setWrongPasswordMessage("Passwords don't match.")
+        }
+    }
+
     const handleSubmit = (e) => {
-        e.preventDefault();
         if (credentials.email.includes("@") && credentials.email.includes(".")){
             const request = new Request();
             request.post("http://localhost:8080/signup", credentials)
             .then(async (res) => {
                 const raw = await res.text();
                 const parsed = JSON.parse(raw);
-                setVerifiedUserId(parsed)
+                localStorage.setItem("id", parsed)
+                history.push('/dashboard')
             })
             history.push('/')
         } else {setInvalidEmail(true)}
@@ -46,13 +60,16 @@ const Register = () => {
     return(
         <>
         <h4>Sign up here:</h4>
-        <form onSubmit={handleSubmit}>
+        <p id="warning">(Don't reuse a password. We didn't spend a lot on security.)</p>
+        <form onSubmit>
             <input type="text" placeholder="name" onChange={handleNameChange}></input>
             <input type="text" placeholder="email" onChange={handleEmailChange}></input>
             <input type="password" placeholder="password" onChange={handlePasswordChange}></input>
-            <button type="submit" onClick={Link}>Sign up</button>
+            <input type="password" placeholder="repeat password" onChange={handleRepeatPasswordChange}></input>
+            <button type="submit" onClick={checkPasswords}>Sign up</button>
         </form>
-        {invalidEmail && <h2>Enter a valid email</h2>}
+        {wrongPasswordMessage}
+        {invalidEmail && <p>Enter a valid email</p>}
         </>
     );
 

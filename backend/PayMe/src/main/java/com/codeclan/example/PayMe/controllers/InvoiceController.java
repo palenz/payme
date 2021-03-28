@@ -16,12 +16,6 @@ public class InvoiceController {
     @Autowired
     InvoiceRepository invoiceRepository;
 
-    @GetMapping(value = "/invoices")
-    public ResponseEntity<List<Invoice>> getAllInvoices(){
-        return new ResponseEntity<>(invoiceRepository.findAll(), HttpStatus.OK);
-    };
-
-
     @GetMapping(value = "/invoices/{id}")
     public ResponseEntity getInvoice(@PathVariable UUID id){
         return new ResponseEntity<>(invoiceRepository.findById(id), HttpStatus.OK);

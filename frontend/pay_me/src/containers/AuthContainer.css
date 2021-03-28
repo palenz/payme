@@ -9,16 +9,21 @@
   }
 
 #homeContent{
-    width: 70%;
+    width: 50%;
     padding: 3rem;
 }
 
 #signIn{
-    padding: 3rem;
+    padding: 2.2rem;
     width: 30%;
 }
 
 #register{
-    padding-top: 5rem;
+    padding-top: 1rem;
+}
+
+#warning{
+    font-size: 8pt;
+    margin-top: -20px;
 }
 
