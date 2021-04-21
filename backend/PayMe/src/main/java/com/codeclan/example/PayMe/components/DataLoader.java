@@ -32,7 +32,7 @@ public class DataLoader implements ApplicationRunner {
         User user1 = new User("James Brown", "mike","123");
         userRepository.save(user1);
 
-        Debtor debtor1 = new Debtor("Juan", "+447413234416", user1);
+        Debtor debtor1 = new Debtor("Juan", "+44741323111", user1);
         debtorRepository.save(debtor1);
 
         Invoice invoice1 = new Invoice(3, "bought you dinner", debtor1);
