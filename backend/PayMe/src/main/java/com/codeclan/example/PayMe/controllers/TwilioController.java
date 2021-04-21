@@ -40,7 +40,7 @@ public class TwilioController {
     @Value("${phoneNumber}")
     private String myTwilioPhoneNumber;
 
-    @Scheduled(cron = "0 5 1 * * MON,FRI,SUN", zone = "GMT")
+    @Scheduled(cron = "0 15 12 * * MON-FRI", zone = "Europe/London")
     void callTrigger(){
         Twilio.init(twilioAccountSid, twilioAuthToken);
         for (Debtor debtor : debtorRepository.findAll()){
@@ -48,19 +48,9 @@ public class TwilioController {
             Call call = Call.creator(
                     new com.twilio.type.PhoneNumber(debtor.getMobile()),
                     new com.twilio.type.PhoneNumber(myTwilioPhoneNumber),
-                    new com.twilio.type.Twiml(String.format("<Response><Say>Hello, %s... Fuck you, pay me. You owe %x pounds. Bye.</Say></Response>", debtor.getName(), debtor.getMoneyOwed() )))
+                    new com.twilio.type.Twiml(String.format("<Response><Say>Hello, %s... this is %s. Pay me. You owe %x pounds. Bye.</Say></Response>", debtor.getName(), debtor.getUser().getName(), debtor.getMoneyOwed() )))
                     .create();
-            System.out.println("Call works");
-
-            Message message = Message.creator(
-                    new com.twilio.type.PhoneNumber(debtor.getMobile()),
-                    new com.twilio.type.PhoneNumber(myTwilioPhoneNumber),
-                    String.format("Remember to repay %s. You owe £%x. Sent by FU pay me app.", debtor.getUser().getName(), debtor.getMoneyOwed() )).create();
-            System.out.println("First debtor call, user: ");
-
-
+            System.out.println("Calling: "+ debtor.getName() + " from user: " + debtor.getUser().getName());
         }
     }
-
-
 }

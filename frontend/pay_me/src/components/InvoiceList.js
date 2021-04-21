@@ -1,7 +1,6 @@
 import React from 'react';
 import Invoice from './Invoice.js';
-
-
+import searchDebtor from './searchDebtor.js';
 
 
 const InvoiceList = (props) => {
@@ -22,7 +21,9 @@ const InvoiceList = (props) => {
 
 	return (
 	<>
+		<searchDebtor></searchDebtor>
 		<h1>Outstanding invoices</h1>
+
 			<ul >
 				{invoices}
 			</ul>

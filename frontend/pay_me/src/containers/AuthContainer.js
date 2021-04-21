@@ -1,6 +1,5 @@
 import React from 'react';
 import SignIn from '../components/SignIn';
-import { BrowserRouter as Link } from "react-router-dom";
 import Group1 from '../Group1.png'
 import FU from '../fu.png'
 import './AuthContainer.css';

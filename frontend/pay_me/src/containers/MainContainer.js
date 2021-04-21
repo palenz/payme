@@ -6,6 +6,7 @@ import DebtorForm from '../components/DebtorForm';
 import InvoiceList from '../components/InvoiceList';
 import InvoiceForm from '../components/InvoiceForm';
 import { useHistory } from 'react-router-dom';
+import searchDebtor from '../components/searchDebtor';
 
 const MainContainer = () => {
 
@@ -88,6 +89,7 @@ const MainContainer = () => {
 
         <div className="row">
         <div className="left" >
+        <searchDebtor></searchDebtor>
         <DebtorForm user = {user} onCreate = { handlePost } />
         <InvoiceForm debtors = {debtors} postInvoice={handlePostInvoice} deleteDebtor={deleteDebtor}/>
         </div>

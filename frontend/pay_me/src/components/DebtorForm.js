@@ -50,7 +50,7 @@ const DebtorForm = (props) => {
         <form onSubmit={checkMobile}>
         <input type="text" placeholder="debtor's name" name="name" onChange={handleNameChange}/>
         <input type="text" placeholder="debtor's mobile (must be a UK number, eg: 07961234567)" name="mobile" onChange={handleMobileChange}/>
-        <button type="submit">save</button> {warning==1 && <p>Invalid name/number</p>}
+        <button type="submit">save</button> {warning===1 && <p>Invalid name/number</p>}
         </form>
         </div>
       </>

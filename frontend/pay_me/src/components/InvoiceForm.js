@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-
 
 const InvoiceForm = (props) => {
 
@@ -10,8 +8,6 @@ const InvoiceForm = (props) => {
     useEffect(() => {
       setInvoice({...invoice, user: props.dedtor})
     }, [props.user])
-
-    let history = useHistory();
 
     const handleAmountChange = (e) => {
       let newInvoice = invoice;
@@ -81,8 +77,8 @@ const InvoiceForm = (props) => {
         </select>
         <input type="number" placeholder="amount (whole numbers only)" name="amount" min="0" step="1" oninput="validity.valid||(value='')" onChange={handleAmountChange}/>
         <input type="text" placeholder="reason" name="reason" onChange={handleReasonChange}/>
-        <button type="submit">send</button > {warning==1 && <p>Select a debtor.</p>}
-          {warning==2 &&<p>You must use whole numbers for the amount.</p>}
+        <button type="submit">send</button > {warning===1 && <p>Select a debtor.</p>}
+          {warning===2 &&<p>You must use whole numbers for the amount.</p>}
           {invoice.debtor && <button type="button" id="negativeButton" onClick={handleDeleteDebtor}>delete debtor</button>}
         </form>
         </div>
